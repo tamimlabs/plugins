@@ -27,6 +27,7 @@ jobs:
         with:
           node-version: 22
           registry-url: "https://registry.npmjs.org"
+          scope: "@swc-contrib"
 
       - run: |
           echo "Before: corepack version => $(corepack --version || echo 'not installed')"
@@ -41,4 +42,6 @@ jobs:
         run: npm install -g npm@latest
 
       - name: Publish to npm
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: pnpm publish -r --access public
