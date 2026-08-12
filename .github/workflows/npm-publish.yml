@@ -22,10 +22,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # Node 24 bundles npm 11.17.0, satisfying the npm >= 11.5.1 requirement
+      # for trusted publishing.
       - name: Setup node
         uses: actions/setup-node@v4
         with:
+<<<<<<< HEAD
           node-version: 22
+=======
+          node-version: 24
+>>>>>>> 0f70994bff016dd0a97ff754a761e9c139493056
           registry-url: "https://registry.npmjs.org"
           scope: "@swc-contrib"
 
@@ -36,10 +42,6 @@ jobs:
           corepack enable
           pnpm --version
           pnpm i
-
-      # Ensure npm 11.5.1 or later is installed
-      - name: Update npm
-        run: npm install -g npm@latest
 
       - name: Publish to npm
         env:
